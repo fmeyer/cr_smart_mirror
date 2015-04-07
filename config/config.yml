@@ -1,0 +1,12 @@
+default: &default
+    cran_mirror: http://cran.r-project.org/src/contrib/
+
+development:
+    <<: *default
+
+test:
+    <<: *default
+
+production:
+    <<: *default
+
