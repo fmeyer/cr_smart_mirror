@@ -1,5 +1,6 @@
 default: &default
     cran_mirror: http://cran.r-project.org/src/contrib/
+    max_downloaded_packages: 50
 
 development:
     <<: *default

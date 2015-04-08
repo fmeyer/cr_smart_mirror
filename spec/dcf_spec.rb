@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "DCF Module" do
+describe DCF do
   describe '#parse ' do
     before :each do
         @acne = DCF.parse(Fixture.load("ACNE")).first

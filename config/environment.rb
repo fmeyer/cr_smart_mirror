@@ -32,7 +32,7 @@ Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 env = ENV['RACK_ENV'] ||= "development"
 
 # Configure
-CRConfig.load do |config|
+CRANrepo.configure do |config|
     config_env = YAML::load_file(File.join(__dir__, 'config.yml'))[env]
     config_env.each do |key, value|
         config.send("#{key}=",value)
