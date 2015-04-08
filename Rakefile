@@ -1,9 +1,6 @@
 require 'rspec/core/rake_task'
 require 'rspec-rerun'
 
-# Include all of ActiveSupport's core class extensions, e.g., String#camelize
-require 'active_support/core_ext'
-
 task :default => :help
 
 desc 'Start pry with application environment loaded'

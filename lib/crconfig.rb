@@ -1,4 +1,4 @@
-module Config
+module CRConfig
 	class << self
 		attr_accessor :config
 	end

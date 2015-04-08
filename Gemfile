@@ -12,8 +12,6 @@ gem 'activesupport', '~>4.1'
 
 gem 'rake'
 gem 'shotgun'
-gem 'httparty'
-gem 'treetop-dcf'
 
 group :development, :test do 
     gem 'pry'
