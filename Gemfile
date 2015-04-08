@@ -13,6 +13,8 @@ gem 'activesupport', '~>4.1'
 gem 'rake'
 gem 'shotgun'
 
+gem 'mongoid'
+
 group :development, :test do 
     gem 'pry'
     gem 'web-console'

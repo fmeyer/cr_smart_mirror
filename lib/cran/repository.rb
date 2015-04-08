@@ -5,7 +5,6 @@ module CRAN::Repository
 
     module ClassMethods
 
-
         def max_packages
             CRAN.config.max_downloaded_packages ? CRAN.config.max_downloaded_packages : retrieve_package_list.size
         end 
