@@ -30,7 +30,6 @@ APP_NAME = APP_ROOT.basename.to_s
 Dir[APP_ROOT.join('lib', '**' ,'*.rb')].each { |file| require file }
 Dir[APP_ROOT.join('app', 'models', '*.rb')].each { |file| require file }
 Dir[APP_ROOT.join('app', 'controllers', '*.rb')].each { |file| require file }
-Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 
 env = ENV['RACK_ENV'] ||= "development"
 

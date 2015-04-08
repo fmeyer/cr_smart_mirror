@@ -4,3 +4,10 @@ development:
       database: crsmartmirror
       hosts:
         - localhost:27017
+
+test:
+  sessions:
+    default:
+      database: crsmartmirror_test
+      hosts:
+        - localhost:27017    

@@ -18,6 +18,13 @@ module CRAN::Repository
             parse_metadata
         end
 
+        # TODO: fix 404 
+        def download(package_name, package_version)
+            package = package_filename(package_name, package_version)
+            local_filename = CRAN.config.local_mirror + package 
+            File.write(local_filename, get(CRAN.config.mirror + package))
+        end
+
         private
 
         def packages_file
@@ -28,12 +35,6 @@ module CRAN::Repository
             retrieve_package_list[0, max_packages].each do |package|
                 download(package["Package"], package["Version"]) 
             end
-        end
-
-        # TODO: fix 404 
-        def download(package_name, package_version)
-            package = package_filename(package_name, package_version)
-            File.write(CRAN.config.local_mirror + package, get(CRAN.config.mirror + package))
         end
 
         def parse_metadata

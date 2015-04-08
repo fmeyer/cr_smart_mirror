@@ -14,6 +14,8 @@ gem 'rake'
 gem 'shotgun'
 
 gem 'mongoid'
+gem 'sidekiq'
+
 
 group :development, :test do 
     gem 'pry'
