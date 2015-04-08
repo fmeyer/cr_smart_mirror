@@ -17,7 +17,7 @@ module CRANrepo::Package
 
         def retrieve_package_list
             @package_list ||=  get(PACKAGES_FILE)
-            process_metadata
+            parse_metadata
         end
 
         private
@@ -34,7 +34,7 @@ module CRANrepo::Package
             File.write(CRANrepo.config.local_mirror + package, get(CRANrepo.config.cran_mirror + package))
         end
 
-        def process_metadata
+        def parse_metadata
             @packages = DCF.parse(@package_list)
         end
 
