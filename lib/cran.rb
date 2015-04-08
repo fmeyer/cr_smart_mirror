@@ -1,4 +1,4 @@
-module CRANrepo
+module CRAN
     class << self
         attr_accessor :config
     end

@@ -1,5 +1,5 @@
 default: &default
-    cran_mirror: http://www.vps.fmvz.usp.br/CRAN/src/contrib/
+    mirror: http://www.vps.fmvz.usp.br/CRAN/src/contrib/
     max_downloaded_packages: 50
     local_mirror: public/mirror/
 
@@ -8,8 +8,8 @@ development:
 
 test:
     <<: *default
-    cran_mirror: http://mirr/
+    mirror: http://mirr/
 
 production:
-    cran_mirror: http://cran.r-project.org/src/contrib/
+    mirror: http://cran.r-project.org/src/contrib/
     max_downloaded_packages: 0 # all packages

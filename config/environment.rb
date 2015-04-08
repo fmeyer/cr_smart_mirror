@@ -33,8 +33,8 @@ Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 env = ENV['RACK_ENV'] ||= "development"
 
 # Configure
-CRANrepo.configure do |config|
-    config_env = YAML::load_file(File.join(__dir__, 'config.yml'))[env]
+CRAN.configure do |config|
+    config_env = YAML::load_file(File.join(__dir__, 'cran.yml'))[env]
     config_env.each do |key, value|
         config.send("#{key}=",value)
     end
@@ -48,4 +48,3 @@ configure do
   # Set the views to
   set :views, File.join(APP_ROOT, "app", "views")
 end
-

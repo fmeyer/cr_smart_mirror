@@ -1,14 +1,13 @@
 require 'net/http'
 
-module CRANrepo::Package
-    PACKAGES_FILE = CRANrepo.config.cran_mirror + "PACKAGES"
+module CRAN::Repository
     FORMAT = ".tar.gz"
 
     module ClassMethods
 
 
         def max_packages
-            CRANrepo.config.max_downloaded_packages ? CRANrepo.config.max_downloaded_packages : retrieve_package_list.size
+            CRAN.config.max_downloaded_packages ? CRAN.config.max_downloaded_packages : retrieve_package_list.size
         end 
 
         def package_filename(package, version)
@@ -16,11 +15,15 @@ module CRANrepo::Package
         end
 
         def retrieve_package_list
-            @package_list ||=  get(PACKAGES_FILE)
+            @package_list ||=  get(packages_file)
             parse_metadata
         end
 
         private
+
+        def packages_file
+            CRAN.config.mirror + "PACKAGES"
+        end
 
         def download_all
             retrieve_package_list[0, max_packages].each do |package|
@@ -31,7 +34,7 @@ module CRANrepo::Package
         # TODO: fix 404 
         def download(package_name, package_version)
             package = package_filename(package_name, package_version)
-            File.write(CRANrepo.config.local_mirror + package, get(CRANrepo.config.cran_mirror + package))
+            File.write(CRAN.config.local_mirror + package, get(CRAN.config.mirror + package))
         end
 
         def parse_metadata

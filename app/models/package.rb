@@ -1,4 +1,4 @@
 class Package
-    include CRANrepo::Package 
-
+    include CRAN::Repository
+    
 end
