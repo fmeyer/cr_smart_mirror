@@ -1,4 +1,4 @@
-feature 'List available packages' do
+feature 'WEB: List available packages' do
     before(:each) do
         Package.delete_all
 

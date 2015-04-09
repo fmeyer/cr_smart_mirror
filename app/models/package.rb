@@ -2,16 +2,25 @@ class Package
     include Mongoid::Document
     include CRAN::Repository
 
-    field :name, type: String
-    field :title, type: String    
-    field :description, type: String
-    field :version, type: String
-    field :publication_date, type: Date
+    field       :name, type: String
+    field       :title, type: String    
+    field       :description, type: String
+    field       :version, type: String
+    field       :publication_date, type: Date
 
-    field :status, type: String, default: "created"
+    field       :status, type: String, default: "created"
 
-    embeds_many :maintainers
-    embeds_many :authors
+    has_one     :maintainer, autobuild: true
+    has_many    :authors
+
+
+    def maintainer_name
+        maintainer.name
+    end
+
+    def authors_names
+        authors.map {|a| a.name}.join(", ")
+    end
 
     def fetch_cran_package_metadata!
         metadata = self.class.retrieve_package_metadata(name, version)
@@ -19,7 +28,10 @@ class Package
         update( title: metadata["Title"], 
                 description: metadata["Description"], 
                 publication_date: metadata["Date/Publication"], 
-                status: "downloaded")
+                status: "indexed",
+                authors: Author.parse(metadata["Author"]),
+                maintainer: Maintainer.parse(metadata["Maintainer"]).first)
+        save
     end
 
     def self.fetch_cran_packages
@@ -32,9 +44,5 @@ class Package
 
     def self.all_with_versions
         all.group_by(&:name)
-    end
-
-    def to_s
-        "#{name}, #{title}, #{version}, #{description}"
     end
 end
