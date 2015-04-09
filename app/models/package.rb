@@ -42,6 +42,14 @@ class Package
         all
     end
 
+    def self.index_all 
+        fetch_cran_packages
+        all.each do |p|
+            puts "indexing package #{p.name}"
+            p.fetch_cran_package_metadata!
+        end
+    end
+
     def self.all_with_versions
         all.group_by(&:name)
     end

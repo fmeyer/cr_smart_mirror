@@ -15,9 +15,6 @@ class Maintainer
         end
       end
     end
-
-    # index({ name: 1, email: 1 }, { unique: true })
-
 end
 
 class Author < Maintainer

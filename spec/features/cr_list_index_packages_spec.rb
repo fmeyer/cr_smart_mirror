@@ -13,3 +13,4 @@ feature 'WEB: List available packages' do
         expect(page).to have_text('abctools 1.0.1')        
     end
 end
+

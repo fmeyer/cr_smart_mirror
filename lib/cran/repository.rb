@@ -3,6 +3,7 @@ require 'zlib'
 require 'rubygems/package'
 require 'dcf'
 
+
 module CRAN::Repository
     FORMAT = ".tar.gz"
 
@@ -39,7 +40,7 @@ module CRAN::Repository
 
         # TODO: fix 404 
         def download_package
-            File.write(local_filename, get(remote_filename))
+            File.write(APP_ROOT+local_filename, get(remote_filename))
         end
 
         def parse_description_metadata
@@ -63,7 +64,7 @@ module CRAN::Repository
         end
 
         def read_file_content
-            @description_content = Zlib::GzipReader.open(local_filename) do |gzipped|
+            @description_content = Zlib::GzipReader.open(APP_ROOT+local_filename) do |gzipped|
                 raw_content = Gem::Package::TarReader.new(gzipped)
                 raw_content.find { |f| f.full_name =~ /\A[^\/]+?\/DESCRIPTION\z/ }.read
             end
