@@ -17,9 +17,12 @@ The application lacks a logging system, whenever I interface with
 another server, I tend abuse on logging. Unfortunately, I didn't have
 enough time to refactory and fit a better logger. 
 
-
 If I had more time I'd split up the CRAN::Repository in two, one logical
 interface, dealing with metadata, and other to perform file retrieve. 
+
+My first approach was to use libarchive to expand the .tar.gz,
+unfortunately, my Mac wasn't collaborating and I couldn't compile the lib. So, I've found this trick http://stackoverflow.com/questions/856891/unzip-zip-tar-tag-gz-files-with-ruby to open a tar file using Gem::Package::TarReader
+
 
 I could've used a better scheduler than crontab, but I had to finish this 
 thing before Christmas =) 
