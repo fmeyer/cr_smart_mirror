@@ -15,6 +15,7 @@ gem 'shotgun'
 
 gem 'mongoid'
 gem 'sidekiq'
+gem "treetop-dcf"
 
 
 group :development, :test do 
