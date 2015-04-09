@@ -1,5 +1,5 @@
 get '/' do
-    @packages = Package.all
+    @packages = Package.all_with_versions
     
     erb :index
 end

@@ -3,18 +3,39 @@
     <head>
         <meta charset="utf-8">
         <title>CR Smart Mirror Available Packages</title>
+        <style type="text/css">
+           table.packages {border-spacing: 0}
+           table.packages td, th {padding: 1em; border: 1px solid}
+           table.packages tr:nth-child(odd) {color: #000; background: #FFF}
+           table.packages tr:nth-child(even) {color: #000; background: #CCC}
+        </style>
     </head>
-    <body>
-        <table border="1">
-        <% @packages.each do |package| %>
-            <tr> 
-                <td><%= package.name %> </td>
-                <td><%= package.description %> </td>
-                <td><%= package.version %> </td>
-                <td><%= package.publication_date %> </td>                
-                <td><%= package.status %> </td>
+    <body style="width: 80%;margin: 0 auto; padding:30px">
+
+        <table class="packages">
+            <tr>
+                <th>Name</th>
+                <th>Version</th>
+                <th>Description</th>
+                <th>Publication_date</th>
+                <th>Maintener</th>                
+                <th>Author</th>
+                <th>Status</th>                
             </tr>
+
+        <% @packages.each do |package, versions| %>
+            <% versions.each do |version| %> 
+                <tr> 
+                    <td><%= version.name %> </td>
+                    <td><%= version.version %> </td>                    
+                    <td><%= version.description %> </td>
+                    <td><%= version.publication_date %> </td>
+                    <td> JAO jao@jao.com </td>                    
+                    <td> Fulano, Cicrano </td>                    
+                    <td><%= version.status %> </td>
+                </tr>
+            <% end %>                
         <% end %>
-        </table>        
+        </table>
     </body>
 </html
