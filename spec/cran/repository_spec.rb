@@ -3,6 +3,11 @@ describe CRAN::Repository do
     class Repo 
         include CRAN::Repository
     end
+
+    before do
+      @package_matadata = Fixture.load("PACKAGES")
+      @package_binary_file = Fixture.load("abctools_1.0.tar.gz")
+    end
     
     context "download" do
         it "Should build a correct package filename" do
@@ -15,10 +20,19 @@ describe CRAN::Repository do
         end
 
         it "Should retrieve the package_list" do
-            expect(Repo).to receive(:get).with("http://mirr/PACKAGES")
-            expect(Repo).to receive(:parse_metadata).and_return([])
+            expect(Repo).to receive(:get).with("http://mirr/PACKAGES").and_return(@package_matadata)
 
-            expect(Repo.retrieve_package_list).to eq([])
+            packages = Repo.retrieve_package_list
+
+            expect(packages.size).to eq(2)
+            expect(packages.first['Package']).to eq('ACNE')
+        end
+
+        it "Should extract package metadata" do 
+            expect(Repo).to receive(:get).with("http://mirr/abctools_1.0.tar.gz").and_return(@package_binary_file)
+
+            package_metadata = Repo.retrieve_package_metadata("abctools", "1.0")
+            expect(package_metadata["Title"]).to eq('Tools for ABC analyses')
         end
     end
 end
