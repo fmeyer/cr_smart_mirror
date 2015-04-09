@@ -21,23 +21,38 @@ enough time to refactory and fit a better logger.
 If I had more time I'd split up the CRAN::Repository in two, one logical
 interface, dealing with metadata, and other to perform file retrieve. 
 
+I could've used a better scheduler than crontab, but I had to finish this 
+thing before Christmas =) 
+
+Best, 
+FM
 
 Configuration 
 =============
 
-cran.yml 
+APP config file `cran.yml` 
 
     production:
         cran_mirror: http://cran.r-project.org/src/contrib/
         max_downloaded_packages: 0 # all packages
         local_mirror: public/mirror/
 
+DB config file `mongoid.yml`
+
+    production:
+      sessions:
+        default:
+          database: crsmartmirror_production
+          hosts:
+            - localhost:27017
+
+
 
 ### Scheduling 
 
 Setup the following scheduler on app_user's crontab.
 
-0 12 * * * ${BASE_APP}bin/index.sh
+    0 12 * * * ${BASE_APP}bin/index.sh
 
 Usage
 =====
