@@ -21,3 +21,6 @@ end
 
 Capybara.app = Sinatra::Application
 
+Package.delete_all
+
+

@@ -1,6 +1,6 @@
 default: &default
     mirror: http://www.vps.fmvz.usp.br/CRAN/src/contrib/
-    max_downloaded_packages: 5
+    max_downloaded_packages: 50
     local_mirror: public/mirror/
 
 development:
