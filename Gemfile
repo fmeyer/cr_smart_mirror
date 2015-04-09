@@ -5,17 +5,14 @@ source 'https://rubygems.org'
 gem 'sinatra'
 gem 'sinatra-contrib'
 
-# Use Thin for our web server
-gem 'thin'
-
-gem 'activesupport', '~>4.1'
-
 gem 'rake'
-gem 'shotgun'
 
 gem 'mongoid'
 gem 'sidekiq'
-gem "treetop-dcf"
+gem 'treetop-dcf'
+
+gem 'puma'
+gem 'foreman'
 
 
 group :development, :test do 
