@@ -41,4 +41,4 @@ cran.yml
     production:
         cran_mirror: http://cran.r-project.org/src/contrib/
         max_downloaded_packages: 0 # all packages
-
+        local_mirror: public/mirror/
